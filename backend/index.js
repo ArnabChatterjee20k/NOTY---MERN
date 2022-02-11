@@ -8,6 +8,9 @@ connect_To_Mongo()
 const app = express()
 const port = 3000
 
+// Setting up middlewares
+app.use(express.json())
+
 // Available Routes
 app.use("/api/auth",require("./routes/auth"))
 app.use("/api/notes",require("./routes/notes"))
