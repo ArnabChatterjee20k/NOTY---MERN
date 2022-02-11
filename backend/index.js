@@ -8,9 +8,9 @@ connect_To_Mongo()
 const app = express()
 const port = 3000
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+// Available Routes
+app.use("/api/auth",require("./routes/auth"))
+app.use("/api/notes",require("./routes/notes"))
 
 // app will start listening first then mongo db connected as js is asynchronous
 app.listen(port, () => {
