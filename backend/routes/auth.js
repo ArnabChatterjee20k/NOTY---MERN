@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("../models/User");
 const router = express.Router()
+const bcrypt = require('bcryptjs');
 
 const { body, validationResult } = require('express-validator');
 
@@ -19,7 +20,6 @@ router.post("/createuser", validation_checks,
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-
         // If not error then proceed
 
         // Checking existance of user
@@ -28,10 +28,15 @@ router.post("/createuser", validation_checks,
             if (user) {
                 return res.status(400).json({ errors: "User already exists" });
             }
-            // if user not exists then do this
+            // If user not exists then do this
+
+            // creating salts and password hash. They both return a Promise
+            const salt = await bcrypt.genSalt(10);
+            const secPass = await bcrypt.hash(req.body.password , salt);
+
             await User.create({
                 name: req.body.name,
-                password: req.body.password,
+                password: secPass,
                 email: req.body.email
             })
             const response = {
