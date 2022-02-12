@@ -17,5 +17,5 @@ app.use("/api/notes",require("./routes/notes"))
 
 // app will start listening first then mongo db connected as js is asynchronous
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Noty listening on localhost:${port}`)
 })
