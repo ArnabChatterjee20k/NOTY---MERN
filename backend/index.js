@@ -6,7 +6,7 @@ connect_To_Mongo()
     .catch(() => { console.log("error") })
 
 const app = express()
-const port = 3000
+const port = 5000
 
 // Setting up middlewares
 app.use(express.json())
