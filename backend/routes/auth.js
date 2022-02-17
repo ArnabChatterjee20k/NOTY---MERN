@@ -6,18 +6,25 @@ const jwt = require("jsonwebtoken");
 const { body, validationResult } = require('express-validator');
 
 // validations and custom messages for submitting user data
-const validation_checks = [
-    body("email", "Enter valid email").isEmail().withMessage(),
+const create_validation_checks = [
+    body("email", "Enter valid email").isEmail(),
     body("name", "Enter valid name").isLength({ min: 3 }),
     body("password", "Enter valid password").isLength({ min: 5 }),
+]
+
+const login_validation_checks =[
+    // multiple checks for email field
+    body("email","Enter a valid email").isEmail(),
+    body("email","email not present").exists(),
+    body("password","Password cant be blank").exists() //if password field not present
 ]
 
 // secret for jwt token
 const JWT_SECRET = ";adsjfldasjfldgjlkdgfdklglkfjglueouroejrlejrlenf,dnf,"
 
 // Creating a user. POST "/api/auth/createuser". No auth required
-router.post("/createuser", validation_checks,
-    async (req, res) => {
+router.post("/createuser", create_validation_checks,
+    async (req, res) => { // it must be a asynchronous function so that database operations occur smoothly
         const errors = validationResult(req);
         // sending Bad Request if error
         if (!errors.isEmpty()) {
@@ -58,4 +65,43 @@ router.post("/createuser", validation_checks,
         }
     })
 
+
+// Authenticate the user using post
+router.post("/loginuser",login_validation_checks,
+async (req , res)=>{
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors:errors.array()})
+    }
+
+    const {email,password} = req.body;
+    try {
+        let user = await User.findOne({email});
+        // if user not exists
+        if(!user){
+            return res.status(400).json({error:"Plz check the credentials"})
+        }
+
+        // if user exists check the password hash with queried user password hash
+        const password_compare = await bcrypt.compare(password , user.password)
+        
+        // password not matching
+        if (!password_compare){
+            res.status(400).json({error:"Plz check the credentials"})
+        }
+        
+        // password matching
+        const data = {
+            user:{
+                id:user.id
+            }
+        }
+        authtoken = jwt.sign(data , JWT_SECRET)
+        res.json({authtoken})
+        
+    } catch (error) {
+        res.status(500).json({"error":"some problem occured..."})
+        console.log(error)
+    }
+})
 module.exports = router
