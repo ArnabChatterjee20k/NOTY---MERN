@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const NotesSchema = new Schema({
+    user:{
+        // Just like foreign key
+        type : mongoose.Schema.Types.ObjectId, // storing the objectid of the user whose notes to.
+        ref : "user" // refering to user collection
+    },
     title:{
         type : String,
         required : true
