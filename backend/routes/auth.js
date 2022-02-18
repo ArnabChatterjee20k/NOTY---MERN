@@ -22,7 +22,7 @@ const login_validation_checks =[
 // secret for jwt token
 const JWT_SECRET = ";adsjfldasjfldgjlkdgfdklglkfjglueouroejrlejrlenf,dnf,"
 
-// Creating a user. POST "/api/auth/createuser". No auth required
+// ROUTE 1 : Creating a user. POST "/api/auth/createuser". No auth required
 router.post("/createuser", create_validation_checks,
     async (req, res) => { // it must be a asynchronous function so that database operations occur smoothly
         const errors = validationResult(req);
@@ -66,7 +66,7 @@ router.post("/createuser", create_validation_checks,
     })
 
 
-// Authenticate the user using post
+// ROUTE 2: Authenticate the user using post. NoLogin required
 router.post("/loginuser",login_validation_checks,
 async (req , res)=>{
     const errors = validationResult(req);
@@ -98,7 +98,7 @@ async (req , res)=>{
         }
         authtoken = jwt.sign(data , JWT_SECRET)
         res.json({authtoken})
-        
+
     } catch (error) {
         res.status(500).json({"error":"some problem occured..."})
         console.log(error)
