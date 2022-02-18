@@ -115,7 +115,8 @@ async (req,res)=>{
         const user = await User.findById(userid).select("-password");//excluding the password field using - flag
         res.send({user})
     } catch (error) {
-        
+        res.status(500).json({"error":"some problem occured..."})
+        console.log(error)
     }
 })
 module.exports = router
