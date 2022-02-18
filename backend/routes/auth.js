@@ -4,6 +4,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require('express-validator');
+const fetchuser = require("../middleware/fetchuser") // middleware
 
 // validations and custom messages for submitting user data
 const create_validation_checks = [
@@ -102,6 +103,19 @@ async (req , res)=>{
     } catch (error) {
         res.status(500).json({"error":"some problem occured..."})
         console.log(error)
+    }
+})
+
+// ROUTE 3 : Post Getting logged in User detail. Login required. Here we will send the jwt token
+router.post("/getuser", fetchuser , // fetchuser is the middleware
+async (req,res)=>{
+    try {
+        const userid = req.user.id;
+        // making an object using the authtoken did from fetchuser middleware consisting of details except the password
+        const user = await User.findById(userid).select("-password");//excluding the password field using - flag
+        res.send({user})
+    } catch (error) {
+        
     }
 })
 module.exports = router
