@@ -6,21 +6,22 @@ import About from './components/About';
 import NoteState from "./Context/Notes/NoteState"
 
 function App() {
+  // an array of object contains info about different components.
+  const nav_items = [{ name: "Home", link: "/", component: <Home/> }, { name: "About", link: "/about", component: <About/> }] // it will be used as props in navbar to make set navitems and links
   return (
     <>
       <NoteState>
         <Router>
           <div className="App">
-            <Navbar />
+            <Navbar nav_items={nav_items} />
             <Switch>
-
-              <Route path="/" exact>
-                <Home />
-              </Route>
-
-              <Route path="/about" exact>
-                <About />
-              </Route>
+              {nav_items.map(({ name , link, component }) => {
+                return (
+                  <Route path={`${link}`} exact key={name}>
+                    {component}
+                  </Route>
+                )
+              })}
 
             </Switch>
           </div>

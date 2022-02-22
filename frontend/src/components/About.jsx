@@ -3,11 +3,8 @@ import noteContext from '../Context/Notes/noteContext'
 
 export default function About() {
   const a = useContext(noteContext)
-  useEffect(() => {
-    a.update()
-  }, [])
-  
+  // an array of object contains info about different components.
   return (
-    <div>About {a.state.name}</div>
+    [{ name: "Home", link: "/", component: <Home/> }, { name: "About", link: "/about", component: <About/> }] // it will be used as props in navbar to make set navitems and links
   )
 }
