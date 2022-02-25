@@ -20,3 +20,23 @@
     box-shadow: 0 2px 4px #000;
     transition: 200ms;
 }
+
+svg{
+    margin: 2%;
+}
+
+.book{
+    cursor: zoom-in;
+}
+
+.book:hover{
+    color: red;
+}
+
+.pen , .dustbin{
+    cursor:pointer;
+}
+
+.pen:hover , .dustbin:hover{
+    color: blue;
+}
