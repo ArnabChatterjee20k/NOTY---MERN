@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <NoteState>
-        <div className="container">
+        <div>
           <Router>
             <div className="App">
               <Navbar nav_items={nav_items} />

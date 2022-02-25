@@ -1,0 +1,21 @@
+.btn-danger:hover{
+    background-color: tomato;
+    box-shadow: 2px 0px 10px  rgba(0, 0, 0, 0.692);
+    box-shadow: 2px 0px 10px  rgba(0, 0, 0, 0.692);
+}
+
+.btn-warning:hover{
+    background-color: gold;
+    box-shadow: 2px 0px 10px  rgba(0, 0, 0, 0.692);
+}
+
+.card{
+    background-color: rgb(247, 247, 247);
+    box-shadow: 0 2px 2px rgb(231, 219, 219);
+    transition: 400ms;
+}
+
+.card:hover{
+    box-shadow: 0 2px 4px #000;
+    transition: 200ms;
+}

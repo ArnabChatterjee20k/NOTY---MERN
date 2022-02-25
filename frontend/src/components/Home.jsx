@@ -18,10 +18,10 @@ export default function Home() {
                 <div>
                     <button type="submit" className="btn btn-primary btn-sm">Submit</button>
                 </div>
+                <h1 className='my-3'>Your Notes</h1>
+                <hr />
+                <Notes></Notes>
             </div>
-            <h1 className='my-3'>Your Notes</h1>
-            <hr />
-            <Notes></Notes>
         </>
     )
 }
