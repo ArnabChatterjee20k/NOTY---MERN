@@ -9,21 +9,24 @@ function App() {
   return (
     <>
       <NoteState>
-        <Router>
-          <div className="App">
-            <Navbar nav_items={nav_items} />
-            <Switch>
-              {nav_items.map(({ name , link, component }) => {
-                return (
-                  <Route path={`${link}`} exact key={name}>
-                    {component}
-                  </Route>
-                )
-              })}
+        <div className="container">
+          <Router>
+            <div className="App">
+              <Navbar nav_items={nav_items} />
+              <Switch>
 
-            </Switch>
-          </div>
-        </Router>
+                {nav_items.map(({ name, link, component }) => {
+                  return (
+                    <Route path={`${link}`} exact key={name}>
+                      {component}
+                    </Route>
+                  )
+                })}
+
+              </Switch>
+            </div>
+          </Router>
+        </div>
       </NoteState>
     </>
   );
