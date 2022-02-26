@@ -1,10 +1,10 @@
-import React from 'react'
+import React , { useState} from 'react'
 import PropTypes from 'prop-types'
 import { Dustbin_Icon, Pen_Icon, Book_Icon } from './Icons'
 import "./NoteItem.css"
-function NoteItem(props) {
-    const { title, description } = props.note_item
-    const color = props.color 
+export default function NoteItem(props) {
+    const { title, description,tag } = props.note_item
+    const [color, setcolor] = useState(["#9ADCFF", "#FFF89A" , "#FFB2A6" , "#FF8AAE"])
     return (
         <div className='col-md-3'>
             <div className="card my-3" style={{background:`${color[Math.floor(Math.random()*color.length)]}`}}>
@@ -16,16 +16,9 @@ function NoteItem(props) {
                         <Book_Icon />
                     </div>
                     <p className="card-text">{description}</p>
+                    <span class="badge bg-secondary bg-success border border-2">{tag}</span>
                 </div>
             </div>
         </div>
     )
 }
-
-NoteItem.prototype ={
-    color : PropTypes.array
-}
-NoteItem.defaultProps = {
-    color : ["#9ADCFF", "#FFF89A" , "#FFB2A6" , "#FF8AAE"]
-}
-export default NoteItem;

@@ -68,8 +68,33 @@ const NoteState = (props) => {
         }
     ]
     const [notes, setNotes] = useState(notes_initital)
+
+    // CRUD operations
+
+    // Add a Note
+    const addNote = ({title , description , tag})=>{ // using object destructuring to get the keys from the argument
+        // TODO: API Call
+        const note =  {
+            title : title,
+            description : description , 
+            tag : tag
+        }
+        setNotes(notes.concat(note)) // since .concat returns an array so we can easily use map on it.
+        console.log(note)
+    }
+    
+    // Delete a Note
+    const deleteNote = ()=>{
+        
+    }
+    
+    // Edit a Note
+    const updateNote = ()=>{
+        
+    }
+
     return (
-        <noteContext.Provider value={{notes,setNotes}}>
+        <noteContext.Provider value={{notes, addNote , deleteNote , updateNote}}>
             {props.children}
         </noteContext.Provider>
     )
