@@ -13,7 +13,7 @@ export default function NoteItem(props) {
                     <div className="d-flex align-items-center">
                         <h4 className="card-title">{title}</h4>
                         <Dustbin_Icon _id={_id}/>
-                        <Pen_Icon />
+                        <Pen_Icon _id={_id}/>
                         <Book_Icon />
                     </div>
                     <p className="card-text">{description}</p>

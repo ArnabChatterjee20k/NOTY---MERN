@@ -3,6 +3,7 @@ import { useState } from "react";
 
 const NoteState = (props) => {
     const notes_initital = [
+
         {
             "_id": "620fbe9c3c45285d1da9e93a",
             "user": "620fbd31c8638bf408a3985c",
@@ -80,23 +81,36 @@ const NoteState = (props) => {
             tag : tag
         }
         setNotes(notes.concat(note)) // since .concat returns an array so we can easily use map on it.
-        console.log(note)
     }
     
     // Delete a Note
     const deleteNote = (id)=>{
-        console.log(id)
         const newNotes = notes.filter(note=>note._id!==id)
         setNotes(newNotes)
     }
     
     // Edit a Note
-    const updateNote = ()=>{
+    const updateNote = async ({_id , title , description , tag })=>{
+        // Api call
+        const url = "api/notes/updatenote/620fbe10c8638bf408a39860"
         
+        setNotes (notes.map(
+            (note)=> {
+                if(note._id===_id){
+                    // Api call 
+                    const header = 
+                    // editing the note
+                    note.title = title
+                    note.description = description
+                    note.tag = tag
+                }
+                return note
+            }
+        ))
     }
 
     return (
-        <noteContext.Provider value={{notes, addNote , deleteNote , updateNote}}>
+        <noteContext.Provider value={{notes, setNotes ,addNote , deleteNote , updateNote}}>
             {props.children}
         </noteContext.Provider>
     )

@@ -1,9 +1,14 @@
-import { useContext } from 'react';
-import noteContext from '../Context/Notes/noteContext'
+import { useContext , useEffect} from 'react';
+import noteContext from '../Context/Notes/noteContext';
 import NoteItem from './NoteItem';
+import { GET_API_CALL } from "../API calls/Requests";
 export default function Notes() {
     const note_context = useContext(noteContext);
-    const {notes} = note_context;
+    const {notes,setNotes} = note_context;
+    useEffect(() => {
+        GET_API_CALL().then((e)=>{setNotes(e)})
+    }, []) // rendering it only time .
+    
     // delete update read note function are present iniside Icons component as while using component we cant give it onclick event
     return (
         <div className='container row m-3'>

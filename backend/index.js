@@ -1,4 +1,5 @@
 const express = require("express")
+const cors = require("cors")
 const connect_To_Mongo = require("./db")
 
 connect_To_Mongo()
@@ -7,6 +8,9 @@ connect_To_Mongo()
 
 const app = express()
 const port = 5000
+
+// setting up cors
+app.use(cors())
 
 // Setting up middlewares
 app.use(express.json())
