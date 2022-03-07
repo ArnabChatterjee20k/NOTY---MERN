@@ -27,9 +27,8 @@ export const Pen_Icon = (props) => {
 
 
     function update(){
-        updateNote({_id,title:"a",description:"a",tag:"s"})
-        console.log(notes)
-        modal_open()
+        const {_id}=props
+        modal_open(_id)
     }
     return (
         <svg onClick={()=>update()} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil-square pen" viewBox="0 0 16 16">

@@ -1,3 +1,5 @@
+const auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIwZmJkMzFjODYzOGJmNDA4YTM5ODVjIn0sImlhdCI6MTY0NTE5ODY4N30.EqoguNjqB_1-Ed6eweXsXuji-05GCHV-j9ekpW9oEXQ"
+
 // This function will act as a basic schema provider. Rest functions will take data and add rest data in top of that.
 function server_data_provider(authtoken){
     const host = "http://localhost:5000/";
@@ -14,7 +16,6 @@ function server_data_provider(authtoken){
  * DELETE request to deelete the existing data from the server
  */
 
-const auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIwZmJkMzFjODYzOGJmNDA4YTM5ODVjIn0sImlhdCI6MTY0NTE5ODY4N30.EqoguNjqB_1-Ed6eweXsXuji-05GCHV-j9ekpW9oEXQ"
 
 export async function GET_API_CALL(){
     const server_info = server_data_provider(auth_token)
@@ -45,9 +46,8 @@ export async function POST_API_CALL({title,description,tag}){
     return response
 }
 
-export async function PUT_API_CALL(id,authtoken,body){
-    const server_info = server_data_provider(authtoken)
-    server_info.headers.body = JSON.stringify(body)
+export async function PUT_API_CALL(id,body){
+    const server_info = server_data_provider(auth_token)
 
     const host = server_info.host
     const headers = server_info.headers
@@ -55,8 +55,9 @@ export async function PUT_API_CALL(id,authtoken,body){
     // fetch function
     const endpoint = `api/notes/updatenote/${id}`
     const url = host+endpoint
-    const put_data = await fetch(url,{headers:headers,method:"PUT"})
-    
+
+    const jsonified_body = JSON.stringify(body);
+    const put_data = await fetch(url,{headers:headers,method:"PUT",body:jsonified_body})
     return put_data.json()
 }
 export async function DELETE_API_CALL(id){

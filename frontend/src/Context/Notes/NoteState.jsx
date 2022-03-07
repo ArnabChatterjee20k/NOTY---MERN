@@ -1,6 +1,6 @@
 import noteContext from "./noteContext";
 import { useState } from "react";
-import { POST_API_CALL , DELETE_API_CALL } from "../../API calls/Requests";
+import { POST_API_CALL , DELETE_API_CALL , PUT_API_CALL} from "../../API calls/Requests";
 
 const NoteState = (props) => {
     const notes_initital = []
@@ -37,8 +37,8 @@ const NoteState = (props) => {
     const updateNote = async ({_id , title , description , tag })=>{
         // Api call
         const url = "api/notes/updatenote/620fbe10c8638bf408a39860"
-        
-        setNotes (notes.map(
+        const body ={title,description,tag}
+        PUT_API_CALL(_id,body).then(()=>{setNotes (notes.map(
             (note)=> {
                 if(note._id===_id){
                     // Api call 
@@ -50,7 +50,9 @@ const NoteState = (props) => {
                 }
                 return note
             }
-        ))
+        ))}
+        )
+        return "updated"
     }
 
     return (
