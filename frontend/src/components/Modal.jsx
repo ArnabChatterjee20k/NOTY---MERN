@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useRef } from "react"
 import modalContext from "../Context/Modal/modalContext"
 import formcontext from "../Context/Forms/formContext"
 import noteContext from "../Context/Notes/noteContext"
@@ -10,8 +10,9 @@ function Modal() {
     const note_functions = useContext(noteContext)
     const {updateNote} = note_functions
 
+    const close_btn = useRef(null)
     function updating_note(){
-        updateNote({_id:current_click_modal_id,...FormData}).then((result)=>{console.log(result)})
+        updateNote({_id:current_click_modal_id,...FormData}).then(()=>{close_btn.current.click()})
     }
     return (
         <>
@@ -29,7 +30,7 @@ function Modal() {
                             <Form require_submit_button={false} />
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" ref={close_btn}>Close</button>
                             <button type="button" className="btn btn-primary" onClick={()=>{updating_note()}}>Save</button>
                         </div>
                     </div>
