@@ -3,9 +3,12 @@ import noteContext from '../Context/Notes/noteContext';
 import NoteItem from './NoteItem';
 import Modal from './Modal';
 import { GET_API_CALL } from "../API calls/Requests";
+import modalContext from '../Context/Modal/modalContext';
+
 export default function Notes() {
     const note_context = useContext(noteContext);
     const {notes,setNotes} = note_context;
+    const {Current_Modal_value,setCurrent_Modal_value} = useContext(modalContext);
     useEffect(() => {
         GET_API_CALL().then((e)=>{setNotes(e)})
     }, []) // rendering it only time .
@@ -13,7 +16,7 @@ export default function Notes() {
     // delete update read note function are present iniside Icons component as while using component we cant give it onclick event
     return (
         <div className='container row m-3'>
-            <Modal/>
+            <Modal FormData={Current_Modal_value}/>
             {notes.map((e) => {
                 return <NoteItem note_item = {e} key={e._id} _id={e._id}/> 
             })}

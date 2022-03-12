@@ -1,12 +1,11 @@
 import { useContext, useRef } from "react"
 import modalContext from "../Context/Modal/modalContext"
-import formcontext from "../Context/Forms/formContext"
 import noteContext from "../Context/Notes/noteContext"
 import Form from "./Form"
-function Modal() {
-    const { modal_toggle_reference ,current_click_modal_id,setCurrent_click_modal_id} = useContext(modalContext)
-    const form = useContext(formcontext);
-    const {FormData} = form;
+
+function Modal(props) {
+    const { modal_toggle_reference ,current_click_modal_id,Current_Modal_value,setCurrent_Modal_value} = useContext(modalContext)
+    const {FormData} = props;
     const note_functions = useContext(noteContext)
     const {updateNote} = note_functions
 
@@ -27,7 +26,8 @@ function Modal() {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <Form require_submit_button={false} />
+                            {/* as form must contain FormData and setFormData */}
+                            <Form require_submit_button={false} form={{FormData:Current_Modal_value, setFormData:setCurrent_Modal_value}}/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" ref={close_btn}>Close</button>

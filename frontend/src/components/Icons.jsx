@@ -23,11 +23,11 @@ export const Pen_Icon = (props) => {
 
     // using modalcontext
     const modal = useContext(modalContext)
-    const {modal_open} = modal
+    const {modal_open,Current_Modal_value,setCurrent_Modal_value} = modal
 
 
     function update(){
-        const {_id}=props
+        setCurrent_Modal_value({...props.note_details})
         modal_open(_id)
     }
     return (

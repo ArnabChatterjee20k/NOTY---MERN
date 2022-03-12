@@ -3,13 +3,15 @@ import PropTypes from 'prop-types'
 import noteContext from '../Context/Notes/noteContext'
 import formcontext from '../Context/Forms/formContext';
 export default function Form(props) {
-    const { require_submit_button } = props;
+    const { require_submit_button , form} = props;
 
     const note_context = useContext(noteContext);
     const { notes, addNote } = note_context;
-
-    const form = useContext(formcontext);
-    const {FormData, setFormData} = form;
+    /**
+     * FormData is the statevariable
+     * setFormData is the state function
+     */
+    const {FormData, setFormData} = form; // FormDatat and setFormData must be present
 
     const handleClick = () => {
         addNote(FormData)
@@ -27,19 +29,19 @@ export default function Form(props) {
             <div className="mb-3">
                 <label htmlFor="title" className="form-label">Note Title</label>
                 <input type="text"
-                    className="form-control fs-6" aria-describedby="helpId" placeholder="Title" id="title" name="title" onChange={onchange} />
+                    className="form-control fs-6" aria-describedby="helpId" placeholder="Title" id="title" name="title" onChange={onchange} value={FormData.title}/>
             </div>
 
             <div className="mb-3">
                 <label htmlFor="description" className="form-label">Enter Your Note</label>
                 <input type="text"
-                    className="form-control fs-6" aria-describedby="helpId" placeholder="Note..." id="description" name="description" onChange={onchange} />
+                    className="form-control fs-6" aria-describedby="helpId" placeholder="Note..." id="description" name="description" onChange={onchange} value={FormData.description}/>
             </div>
 
             <div className="mb-3">
                 <label htmlFor="tag" className="form-label">Tag</label>
                 <input type="text"
-                    className="form-control fs-6" aria-describedby="helpId" placeholder="Tag..." id="tag" name="tag" onChange={onchange} />
+                    className="form-control fs-6" aria-describedby="helpId" placeholder="Tag..." id="tag" name="tag" onChange={onchange} value={FormData.tag}/>
             </div>
             {require_submit_button &&
                 <div>
