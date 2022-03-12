@@ -5,8 +5,8 @@ import formcontext from "../Forms/formContext"
 function ModalState(props) {
 
     // making modal states
-    const {FormData} = useContext(formcontext) 
-    const [Current_Modal_value, setCurrent_Modal_value] = useState({...FormData}) // setting formdata to modal
+    const {initial_form_state} = useContext(formcontext) 
+    const [Current_Modal_value, setCurrent_Modal_value] = useState({...initial_form_state}) // setting formdata to modal
 
     // setting a way to pass id of the current note to the modal
     const modal_toggle_reference = useRef()

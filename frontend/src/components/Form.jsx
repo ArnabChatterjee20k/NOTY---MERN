@@ -11,10 +11,11 @@ export default function Form(props) {
      * FormData is the statevariable
      * setFormData is the state function
      */
-    const {FormData, setFormData} = form; // FormDatat and setFormData must be present
+    const {FormData, setFormData,set_initial_form_state} = form; // FormDatat and setFormData must be present
 
     const handleClick = () => {
-        addNote(FormData)
+        addNote(FormData).then(()=>{set_initial_form_state()})
+
     }
 
     const onchange = (e) => {

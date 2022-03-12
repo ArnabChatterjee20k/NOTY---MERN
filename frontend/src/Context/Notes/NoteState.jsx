@@ -13,7 +13,7 @@ const NoteState = (props) => {
     // CRUD operations
 
     // Add a Note
-    const addNote = ({title , description , tag})=>{ // using object destructuring to get the keys from the argument
+    const addNote = async({title , description , tag})=>{ // using object destructuring to get the keys from the argument
         // TODO: API Call
         const note =  {
             title : title,
@@ -23,6 +23,8 @@ const NoteState = (props) => {
         POST_API_CALL(note).then((note)=>{
             setNotes(notes.concat(note)) // since .concat returns an array so we can easily use map on it.
         }).catch((error)=>alert(error))
+
+        return "Done"
     }
     
     // Delete a Note
