@@ -1,0 +1,35 @@
+.back{
+    width: 100%;
+    min-height: 100vh;
+}
+.form-body{
+    max-width: 100%;
+    width: 50%;
+    margin: auto;
+    padding: 4em;
+}
+.hero-img{
+    filter: drop-shadow(0 .5rem 1rem rgba(0,0,0,.15)) ;
+}
+.link{
+    margin: auto;
+    background-color: rgb(212, 255, 255);
+    font-weight: 800;
+}
+a{
+    color: rgb(59, 230, 73);
+    text-decoration: none;
+}
+a:hover{
+    color: rgb(8, 66, 13);
+}
+@media screen and (max-width:750px) {
+    .form-body{
+        width: 100%;
+        padding: 2em;
+    }
+    .hero-img{
+        width: 75% !important;
+    }
+
+}
