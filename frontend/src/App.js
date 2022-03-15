@@ -14,6 +14,7 @@ import NoteState from "./Context/Notes/NoteState"
 import ModalState from './Context/Modal/modalState';
 import FormState from './Context/Forms/FormState';
 
+import Offcanvas from './components/Offcanvas';
 function App() {
   let nav_items = ComponentsList();
   return (
@@ -25,6 +26,7 @@ function App() {
               <Router>
                 <div className="App">
                   <Navbar nav_items={nav_items} />
+                  <Offcanvas nav_items={nav_items}/>
                   {/* <Alert category={"danger"} message={"Deleted"} /> */}
                   <Switch>
                     {nav_items.map(({ name, link, component }) => {
