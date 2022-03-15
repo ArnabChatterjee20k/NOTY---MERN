@@ -13,9 +13,11 @@ export default function NoteItem(props) {
                 <div className="card-body">
                     <div className="d-flex align-items-center">
                         <h4 className="card-title">{title}</h4>
-                        <Dustbin_Icon _id={_id}/>
-                        <Pen_Icon _id={_id} note_details={{...props.note_item}}/>
-                        <Book_Icon />
+                        <div className="w-50 d-flex">
+                            <Dustbin_Icon _id={_id}/>
+                            <Pen_Icon _id={_id} note_details={{...props.note_item}}/>
+                            <Book_Icon />
+                        </div>
                     </div>
                     <p className="card-text">{description}</p>
                     <span className="badge bg-secondary bg-success border border-2">{tag}</span>

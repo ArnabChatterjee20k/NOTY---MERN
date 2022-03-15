@@ -17,6 +17,8 @@ export default function Notes() {
     return (
         <div className='container row m-3'>
             <Modal FormData={Current_Modal_value}/>
+            {/* Displaying this msg if no notes present */}
+            {notes.length===0 && <h1>No Notes to display</h1>}
             {notes.map((e) => {
                 return <NoteItem note_item = {e} key={e._id} _id={e._id}/> 
             })}
