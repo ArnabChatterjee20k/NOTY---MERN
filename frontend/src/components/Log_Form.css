@@ -15,6 +15,7 @@
     margin: auto;
     background-color: rgb(212, 255, 255);
     font-weight: 800;
+    border-radius: 4px;
 }
 a{
     color: rgb(59, 230, 73);

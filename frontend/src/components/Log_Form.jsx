@@ -5,7 +5,7 @@ import Log_Bg from "../Img/Log_Bg.svg"
 import { Link } from 'react-router-dom'
 
 function Log_Form(props) {
-    const { button_name, alternate_text, link } = props
+    const { button_name, alternate_text, link , function_to_be_called_during_submit} = props
     return (
         <div className="back" style={{ backgroundImage: `url(${Log_Bg})`, backgroundSize: "cover" }}>
             <div className='form-body'>

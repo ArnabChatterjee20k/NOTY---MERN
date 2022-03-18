@@ -71,3 +71,18 @@ export async function DELETE_API_CALL(id){
     const response = await fetch(url,{headers:headers,method:"DELETE"})
     return response.json()
 }
+
+export async function LOGIN_API_CALL(body){
+    const server_info = server_data_provider(auth_token)
+
+    const host = server_info.host
+    const headers = server_info.headers
+
+    // fetch function
+    const endpoint = `api/notes/updatenote/${id}`
+    const url = host+endpoint
+
+    const jsonified_body = JSON.stringify(body);
+    const post_data = await fetch(url,{headers:headers,method:"POST",body:jsonified_body})
+    return post_data.json()
+}
