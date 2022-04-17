@@ -17,16 +17,16 @@ function Log_Form(props) {
                     fields.map((field) => {
                         field_data = {...field_data , [field.field_name]:field.state_variable}
                         return(
-                        <div className="form-floating mb-3" key={field.field_name}>
+                        <div className="form-floating mb-3 fade_animation" key={field.field_name}>
                             <input type={field.type} className="shadow form-control" id={field.type} placeholder={field.placeholder} value={field.state_variable} onChange={(e) => field.setter_function(e.target.value)} />
                             <label htmlFor={field.type}>{field.field_name}</label>
                         </div>
                     )})
                 }
-                <div className='my-4 mx-auto w-100'>
+                <div className='my-4 mx-auto w-100 fade_animation'>
                     <button id="submit_btn" className="shadow btn btn-outline-success w-100" type="button" onClick={()=>{function_to_be_called_during_submit({...field_data})}}>{button_name}</button>
                 </div>
-                <div className="alternate w-100 d-flex">
+                <div className="alternate w-100 d-flex fade_animation">
                     <p className='link p-2'>
                         {alternate_text}
                         <Link to={link} className='mx-3'>Click Here</Link>
