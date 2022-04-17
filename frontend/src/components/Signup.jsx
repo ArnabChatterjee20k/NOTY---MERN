@@ -1,21 +1,22 @@
-import React from 'react'
 import Log_Form from './Log_Form'
 import { useState } from 'react'
 
-
-function name_input() {
-    return (
-        <div className="form-floating mb-3">
-            <input type="text" className="shadow form-control" id="name" placeholder="Name" />
-            <label htmlFor="name">Name</label>
-        </div>
-    )
-}
+import Create_fields_object from '../Utility/Create_Field'
 
 function Signup() {
-    const [name , usename] = useState("")
+    const [name , setName] = useState("");
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
+
+    const required_fields = [
+        new Create_fields_object("Name","enter your name","text",name,setName),
+        new Create_fields_object("Email","name@example.com","text",email,setEmail),
+        new Create_fields_object("Password","Password","password",password,setPassword)
+    ]
     return (
-        <Log_Form button_name="Register" alternate_text="Log In" link="/"  Extra_component ={name_input}  extra_data={name}/>
+        <>
+        <Log_Form button_name="Register" alternate_text="Log In" link="/" function_to_be_called_during_submit={null} fields={required_fields}/>
+        </>
     )
 }
 
