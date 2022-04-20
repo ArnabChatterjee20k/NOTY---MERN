@@ -53,13 +53,13 @@ router.post("/createuser", create_validation_checks,
             
             // data for jwt token
             const data = {
-                id : new_user.id
+                id :await new_user.id
             }
             
             // signing the token
             const authtoken = jwt.sign(data , JWT_SECRET)
             console.log({authtoken})
-            res.json({authtoken})
+            res.json({authtoken,data})
         } catch (error) {
             res.status(500).json({"error":"some problem occured..."})
             console.log(error)
@@ -94,7 +94,7 @@ async (req , res)=>{
         // password matching
         const data = {
             user:{
-                id:user.id
+                id:await user.id
             }
         }
         authtoken = jwt.sign(data , JWT_SECRET)

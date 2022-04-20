@@ -1,3 +1,6 @@
 *{
     user-select: none;
 }
+.offcanvas{
+    max-width: calc(90% - 12px);
+}

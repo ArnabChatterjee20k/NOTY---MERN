@@ -1,12 +1,13 @@
-const auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIwZmJkMzFjODYzOGJmNDA4YTM5ODVjIn0sImlhdCI6MTY0NTE5ODY4N30.EqoguNjqB_1-Ed6eweXsXuji-05GCHV-j9ekpW9oEXQ"
-
 // This function will act as a basic schema provider. Rest functions will take data and add rest data in top of that.
 function server_data_provider(authtoken){
     const host = "http://localhost:5000/";
     const headers = {
         "Content-Type" : "application/json" , 
-        "auth-token": authtoken
     };
+    // if authtoken is passed into the functions then only push this into the headers
+    if(authtoken){
+        headers["auth-token"]=authtoken
+    }
     return {host,headers}
 }
 /**
@@ -18,6 +19,7 @@ function server_data_provider(authtoken){
 
 
 export async function GET_API_CALL(){
+    let auth_token = localStorage.getItem("noty__auth__token")
     const server_info = server_data_provider(auth_token)
     const host = server_info.host
     const headers = server_info.headers
@@ -31,6 +33,7 @@ export async function GET_API_CALL(){
 }
 
 export async function POST_API_CALL({title,description,tag}){
+    let auth_token = localStorage.getItem("noty__auth__token")
     const server_info = server_data_provider(auth_token)
     const endpoint = "api/notes/addnewnote"
     const host = server_info.host
@@ -47,6 +50,7 @@ export async function POST_API_CALL({title,description,tag}){
 }
 
 export async function PUT_API_CALL(id,body){
+    let auth_token = localStorage.getItem("noty__auth__token")
     const server_info = server_data_provider(auth_token)
 
     const host = server_info.host
@@ -61,6 +65,7 @@ export async function PUT_API_CALL(id,body){
     return put_data.json()
 }
 export async function DELETE_API_CALL(id){
+    let auth_token = localStorage.getItem("noty__auth__token")
     const server_info = server_data_provider(auth_token)
     const headers = server_info.headers
     const host = server_info.host
@@ -72,17 +77,44 @@ export async function DELETE_API_CALL(id){
     return response.json()
 }
 
-export async function LOGIN_API_CALL(body){
+export async function AUTH_API_CALL(body){
+    let auth_token = localStorage.getItem("noty__auth__token")
     const server_info = server_data_provider(auth_token)
 
     const host = server_info.host
     const headers = server_info.headers
 
     // fetch function
-    const endpoint = `api/notes/updatenote/${id}`
+    const endpoint = `api/auth/loginuser`
     const url = host+endpoint
 
     const jsonified_body = JSON.stringify(body);
     const post_data = await fetch(url,{headers:headers,method:"POST",body:jsonified_body})
-    return post_data.json()
+    const request_condition = post_data.ok
+    
+    if(request_condition){
+        const {authtoken} = await post_data.json()
+        await localStorage.setItem("noty__auth__token",authtoken)
+    }
+    return request_condition
+}
+
+export async function CREATE_USER_API_CALL(body){
+    const server_info = server_data_provider()
+
+    const host = server_info.host
+    const headers = server_info.headers
+
+    // fetch function
+    const endpoint = `api/auth/createuser`
+    const url = host+endpoint
+
+    const jsonified_body = JSON.stringify(body);
+    const post_data = await fetch(url,{headers:headers,method:"POST",body:jsonified_body})
+    const request_condition = post_data.ok
+    if(request_condition){
+        const {authtoken} = await post_data.json()
+        await localStorage.setItem("noty__auth__token",authtoken)
+    }
+    return request_condition
 }
