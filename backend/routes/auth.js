@@ -53,16 +53,16 @@ router.post("/createuser", create_validation_checks,
             
             // data for jwt token
             const data = {
-                id :await new_user.id
+                user : {id: await new_user.id} // since we are reading user.id in the get all notes endpoint
             }
-            
+            // console.log(new_user._id)
             // signing the token
             const authtoken = jwt.sign(data , JWT_SECRET)
-            console.log({authtoken})
+            // console.log({authtoken})
             res.json({authtoken,data})
         } catch (error) {
             res.status(500).json({"error":"some problem occured..."})
-            console.log(error)
+            // console.log(error)
         }
     })
 
@@ -102,7 +102,7 @@ async (req , res)=>{
 
     } catch (error) {
         res.status(500).json({"error":"some problem occured..."})
-        console.log(error)
+        // console.log(error)
     }
 })
 
@@ -116,7 +116,7 @@ async (req,res)=>{
         res.send({user})
     } catch (error) {
         res.status(500).json({"error":"some problem occured..."})
-        console.log(error)
+        // console.log(error)
     }
 })
 module.exports = router
