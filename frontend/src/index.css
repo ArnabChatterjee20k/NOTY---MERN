@@ -15,3 +15,6 @@
     height: var(--dimension);
     width: var(--dimension);
 }
+.navbar{
+    min-width: 100vw;
+}
