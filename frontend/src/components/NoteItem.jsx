@@ -8,7 +8,7 @@ export default function NoteItem(props) {
     const [color, setcolor] = useState(["#9ADCFF", "#FFF89A" , "#FFB2A6" , "#FF8AAE"])
     const style = {background:`${color[Math.floor(Math.random()*color.length)]}`}
     return (
-        <div className='col-md-3'>
+        <div className='col-md-3 noteitem'>
             <div className="card my-3" >
                 <div className="card-body">
                     <div className="d-flex align-items-center">

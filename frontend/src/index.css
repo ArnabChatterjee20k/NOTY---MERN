@@ -4,3 +4,14 @@
 .offcanvas{
     max-width: calc(90% - 12px);
 }
+.loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em;
+}
+.spinner-border{
+    --dimension: clamp(3em,4vw,7em);
+    height: var(--dimension);
+    width: var(--dimension);
+}

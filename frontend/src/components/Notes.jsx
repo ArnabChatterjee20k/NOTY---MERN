@@ -7,10 +7,14 @@ import modalContext from '../Context/Modal/modalContext';
 
 export default function Notes() {
     const note_context = useContext(noteContext);
-    const {notes,setNotes} = note_context;
+    const {notes,setNotes,setLoading} = note_context;
     const {Current_Modal_value,setCurrent_Modal_value} = useContext(modalContext);
     useEffect(() => {
-        GET_API_CALL().then((e)=>{setNotes(e)})
+        setLoading(true)
+        GET_API_CALL().then((e)=>{
+            setNotes(e)
+            setLoading(false)
+        })
     }, []) // rendering it only time .
     
     // delete update read note function are present iniside Icons component as while using component we cant give it onclick event

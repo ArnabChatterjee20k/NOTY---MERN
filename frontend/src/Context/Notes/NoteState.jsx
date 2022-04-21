@@ -5,7 +5,9 @@ import { POST_API_CALL , DELETE_API_CALL , PUT_API_CALL} from "../../API calls/R
 const NoteState = (props) => {
     const notes_initital = []
     const [notes, setNotes] = useState(notes_initital)
-
+    const [loading, setLoading] = useState(true)
+    
+    
     /**
      * Rendering note on first load of website is written in Notes using useEffect hook.
      */
@@ -16,6 +18,8 @@ const NoteState = (props) => {
     const addNote = async({title , description , tag})=>{ // using object destructuring to get the keys from the argument
         // TODO: API Call
         const note =  {
+
+            
             title : title,
             description : description , 
             tag : tag
@@ -38,7 +42,7 @@ const NoteState = (props) => {
     // Edit a Note
     const updateNote = async ({_id , title , description , tag })=>{
         // Api call
-        const url = "api/notes/updatenote/620fbe10c8638bf408a39860"
+        const url = "api/notes/updatenote/"+_id
         const body ={title,description,tag}
         PUT_API_CALL(_id,body).then(()=>{setNotes (notes.map(
             (note)=> {
@@ -58,7 +62,7 @@ const NoteState = (props) => {
     }
 
     return (
-        <noteContext.Provider value={{notes, setNotes ,addNote , deleteNote , updateNote}}>
+        <noteContext.Provider value={{notes, setNotes ,addNote , deleteNote , updateNote , loading , setLoading}}>
             {props.children}
         </noteContext.Provider>
     )
