@@ -1,20 +1,40 @@
-*{
+* {
     user-select: none;
 }
-.offcanvas{
+
+.offcanvas {
     max-width: calc(90% - 12px);
 }
-.loader{
+
+.loader {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 2em;
 }
-.spinner-border{
-    --dimension: clamp(3em,4vw,7em);
+
+.spinner-border {
+    --dimension: clamp(3em, 4vw, 7em);
     height: var(--dimension);
     width: var(--dimension);
 }
-.navbar{
+
+.navbar {
     min-width: 100vw;
+}
+
+html::-webkit-scrollbar {
+    width: 20px;
+}
+
+html::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+}
+
+html::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    border: 5px solid transparent;
+    background-clip: content-box;
+    background-color: #8070d4;
 }
