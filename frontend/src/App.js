@@ -2,11 +2,11 @@
 import './App.css';
 
 // importing packages
-import Navbar from './components/Navbar';
+import Navbar from './components/Navigation/Navbar';
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom"
 
 // importing functions and components
-import ComponentsList from './components/ComponentsList';
+import ComponentsList from './components/Navigation/ComponentsList';
 import Alert from './components/Alert';
 
 // Importing objects from contexts
@@ -14,7 +14,7 @@ import NoteState from "./Context/Notes/NoteState"
 import ModalState from './Context/Modal/modalState';
 import FormState from './Context/Forms/FormState';
 
-import Offcanvas from './components/Offcanvas';
+import Offcanvas from './components/Navigation/Offcanvas';
 function App() {
   let nav_items = ComponentsList();
   return (

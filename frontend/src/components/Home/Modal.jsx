@@ -1,6 +1,6 @@
 import { useContext, useRef } from "react"
-import modalContext from "../Context/Modal/modalContext"
-import noteContext from "../Context/Notes/noteContext"
+import modalContext from "../../Context/Modal/modalContext"
+import noteContext from "../../Context/Notes/noteContext"
 import Form from "./Form"
 
 function Modal(props) {

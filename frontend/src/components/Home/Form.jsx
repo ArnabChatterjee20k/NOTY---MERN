@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
-import noteContext from '../Context/Notes/noteContext'
-import formcontext from '../Context/Forms/formContext';
+import noteContext from '../../Context/Notes/noteContext';
+import formcontext from '../../Context/Forms/formContext';
 export default function Form(props) {
     const { require_submit_button, form } = props;
 

@@ -1,9 +1,9 @@
 import { useContext , useEffect} from 'react';
-import noteContext from '../Context/Notes/noteContext';
+import noteContext from '../../Context/Notes/noteContext';
 import NoteItem from './NoteItem';
 import Modal from './Modal';
-import { GET_API_CALL } from "../API calls/Requests";
-import modalContext from '../Context/Modal/modalContext';
+import { GET_API_CALL } from "../../API calls/Requests";
+import modalContext from '../../Context/Modal/modalContext';
 
 export default function Notes() {
     const note_context = useContext(noteContext);

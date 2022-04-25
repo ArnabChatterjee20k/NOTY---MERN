@@ -1,7 +1,7 @@
-import Home from './Home';
-import About from './About';
-import Login from './Login';
-import Signup from './Signup';
+import Home from '../Home/Home';
+import About from '../About';
+import Login from '../Auth/Login';
+import Signup from '../Auth/Signup';
 
 export default function ComponentsList() {
     return (

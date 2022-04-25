@@ -2,8 +2,8 @@ import { useContext, useEffect } from "react";
 import Form from "./Form"
 import Notes from "./Notes"
 import Loading from "./Loading";
-import formcontext from "../Context/Forms/formContext";
-import noteContext from "../Context/Notes/noteContext";
+import formcontext from "../../Context/Forms/formContext";
+import noteContext from "../../Context/Notes/noteContext";
 
 export default function Home() {
     const form = useContext(formcontext);

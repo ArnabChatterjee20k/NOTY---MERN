@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import "./Log_Form.css"
-import Log_Img from "../Img/Log_Img.svg"
-import Log_Bg from "../Img/Log_Bg.svg"
+import Log_Img from "../../Img/Log_Img.svg"
+import Log_Bg from "../../Img/Log_Bg.svg"
 import { Link } from 'react-router-dom'
 
 function Log_Form(props) {

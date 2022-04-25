@@ -1,7 +1,7 @@
 import Log_Form from './Log_Form'
 import { useState } from 'react'
-import Create_fields_object from '../Utility/Create_Field'
-import { CREATE_USER_API_CALL } from '../API calls/Requests'
+import Create_fields_object from '../../Utility/Create_Field'
+import { CREATE_USER_API_CALL } from '../../API calls/Requests'
 
 function Signup() {
     const [name , setName] = useState("");

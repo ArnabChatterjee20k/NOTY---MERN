@@ -1,6 +1,6 @@
 import React , {useContext} from 'react'
-import noteContext from '../Context/Notes/noteContext'
-import modalContext from '../Context/Modal/modalContext'
+import noteContext from '../../Context/Notes/noteContext'
+import modalContext from '../../Context/Modal/modalContext'
 
 export const Dustbin_Icon = (props) => {
     const {_id} = props
