@@ -1,31 +1,52 @@
 import Home from "./Home";
 import { Redirect } from "react-router-dom";
-import { useEffect, useState } from "react";
 
-/** A encapsulation */
-function Protected_home() {
-    const[token , setToken] = useState(null)
-    const [auth,setAuth] = useState(false)
+import { Component } from "react";
 
-    useEffect(()=>{
-        setToken(localStorage.getItem("noty__auth__token")) //not working
-        console.log("token fetched")
-    },[])
+export default class Protected_home extends Component{
+    constructor(){
+        super()
+        this.state = ({
+            token:null,
+            auth:false
+        })
+    }
+    componentWillMount(){
+        this.setState({...this.state,token:localStorage.getItem("noty__auth__token")})
+        console.log("will mount over. Current state",this.state)
+        // this will show me the state before mounting of the component means everything will be null.
+        // here we are 
+    }
+    componentDidMount(){
+        if(this.state.token){
+            this.setState({auth:true})
+        }
+        console.log("did mount over. Current state",this.state)
+        // it will be going to show me the changes after mounting of the component means here it will show me the state after mounting. Since we are changing auth after mounting so it will considered as a update
+    }
+    componentDidUpdate(){
+        console.log("Update happend",this.state)
+        // here it will show the state of the component when their will be a update after mounting.
+    }
 
-    useEffect(()=>{
-        setAuth(true) // not working
-        alert(token)
-    },[token])
-    
-    useEffect(()=>{
-        alert(token)
-    },[auth])
+    //  TODO: we are using token to identify the lifecycle. no use of auth as it is getting tracked in the update cycle and getting set in the did mount.
+    /**
+     * 
+     * Logs to explain the things (token is present in the local storage)
+     * will mount over. Current state {token: null, auth: false}
+     * did mount over. Current state {token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7I…gwMX0.thWhsdFSWmtG9G6yScGxabl3DJyPjO7N0LnPmbEb9zY', auth: false}
+     * Update happend {token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7I…gwMX0.thWhsdFSWmtG9G6yScGxabl3DJyPjO7N0LnPmbEb9zY', auth: true}
+     */
 
-
-    if(!auth){
+    /**
+     * Logs to explain the things (token is not present in the local storage)
+     * will mount over. Current state {token: null, auth: false}
+     * did mount over. Current state {token: null, auth: false}
+     */
+    render(){
+        if(this.state.token){
+            return <Home />
+        }
         return <Redirect to={{pathname:"/"}}/>
     }
-    return <Home/>
 }
-
-export default Protected_home
