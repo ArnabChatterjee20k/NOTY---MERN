@@ -1,52 +1,25 @@
 import Home from "./Home";
 import { Redirect } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-import { Component } from "react";
+/** A encapsulation */
+function Protected_home() {
+    // before mounting only getting the token. Simulating a component will mount effect.
+    const[token , setToken] = useState(localStorage.getItem("noty__auth__token"))
 
-export default class Protected_home extends Component{
-    constructor(){
-        super()
-        this.state = ({
-            token:null,
-            auth:false
-        })
-    }
-    componentWillMount(){
-        this.setState({...this.state,token:localStorage.getItem("noty__auth__token")})
-        console.log("will mount over. Current state",this.state)
-        // this will show me the state before mounting of the component means everything will be null.
-        // here we are 
-    }
-    componentDidMount(){
-        if(this.state.token){
-            this.setState({auth:true})
-        }
-        console.log("did mount over. Current state",this.state)
-        // it will be going to show me the changes after mounting of the component means here it will show me the state after mounting. Since we are changing auth after mounting so it will considered as a update
-    }
-    componentDidUpdate(){
-        console.log("Update happend",this.state)
-        // here it will show the state of the component when their will be a update after mounting.
-    }
+    useEffect(()=>{
+        // we cant set the token after mounting as from the beginning token is null so before mounting it will get redirected to login page.
+        // to understand it see the previous commit where it is explained using lifecycle methods.
+        console.log(token)
+        // setToken(localStorage.getItem("noty__auth__token")) 
+        console.log("token fetched",token)
+    },[])
 
-    //  TODO: we are using token to identify the lifecycle. no use of auth as it is getting tracked in the update cycle and getting set in the did mount.
-    /**
-     * 
-     * Logs to explain the things (token is present in the local storage)
-     * will mount over. Current state {token: null, auth: false}
-     * did mount over. Current state {token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7I…gwMX0.thWhsdFSWmtG9G6yScGxabl3DJyPjO7N0LnPmbEb9zY', auth: false}
-     * Update happend {token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7I…gwMX0.thWhsdFSWmtG9G6yScGxabl3DJyPjO7N0LnPmbEb9zY', auth: true}
-     */
 
-    /**
-     * Logs to explain the things (token is not present in the local storage)
-     * will mount over. Current state {token: null, auth: false}
-     * did mount over. Current state {token: null, auth: false}
-     */
-    render(){
-        if(this.state.token){
-            return <Home />
-        }
+    if(!token){
         return <Redirect to={{pathname:"/"}}/>
     }
+    return <Home/>
 }
+
+export default Protected_home
