@@ -10,7 +10,7 @@ function Log_Form(props) {
     async function request_decorator(body){
         const response_condition = await function_to_be_called_during_submit(body)
         if(response_condition){
-            history.replace("/home")
+            history.replace("/")
         }else{
             // error alert + register link
         }

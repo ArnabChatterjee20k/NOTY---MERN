@@ -92,14 +92,15 @@ export async function AUTH_API_CALL(body){
 
     const jsonified_body = JSON.stringify(body);
     const post_data = await fetch(url,{headers:headers,method:"POST",body:jsonified_body})
+    const json_post_data = await post_data.json()
     const request_condition = post_data.ok
     
     if(request_condition){
-        const {authtoken} = await post_data.json()
+        const {authtoken} = json_post_data
         await localStorage.setItem("noty__auth__token",authtoken)
         toast.success("Login Successfull",{theme:"colored"})
     } else{
-        toast.error("Error occured!",{theme:"colored"})
+        toast.error(json_post_data.errors[0].msg,{theme:"colored"})
     }
     return request_condition
 }
@@ -116,14 +117,16 @@ export async function CREATE_USER_API_CALL(body){
 
     const jsonified_body = JSON.stringify(body);
     const post_data = await fetch(url,{headers:headers,method:"POST",body:jsonified_body})
+    const json_post_data = await post_data.json()
     const request_condition = post_data.ok
     if(request_condition){
-        const {authtoken} = await post_data.json()
+        const {authtoken} = json_post_data
+        console.log("oj")
         await localStorage.setItem("noty__auth__token",authtoken)
         toast.success("Registered!",{theme:"colored"})
     }
     else{
-        toast.error("Error occured!",{theme:"colored"})
+        toast.error(json_post_data.errors,{theme:"colored"})
     }
     return request_condition
 }
