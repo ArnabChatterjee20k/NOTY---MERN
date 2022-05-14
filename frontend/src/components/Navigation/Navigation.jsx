@@ -19,9 +19,6 @@ function Navigation() {
                             </Route>
                         )
                     })}
-                    <Route path={"/preview"} exact key={"preview"}>
-                        <Preview_Notes/>
-                    </Route>
                 </Switch>
             </div>
         </Router>
