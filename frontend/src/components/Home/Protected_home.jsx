@@ -21,7 +21,7 @@ function Protected_home() {
 
 
     if(!token){
-        return <Redirect to={{pathname:"/"}}/>
+        return <Redirect to={{pathname:"/login"}}/>
     }
     return <Home/>
 }
