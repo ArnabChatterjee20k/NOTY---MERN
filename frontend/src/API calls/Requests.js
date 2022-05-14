@@ -97,9 +97,9 @@ export async function AUTH_API_CALL(body){
     if(request_condition){
         const {authtoken} = await post_data.json()
         await localStorage.setItem("noty__auth__token",authtoken)
-        toast.success("Login Successfull")
+        toast.success("Login Successfull",{theme:"colored"})
     } else{
-        toast.error("Error occured!")
+        toast.error("Error occured!",{theme:"colored"})
     }
     return request_condition
 }
@@ -120,10 +120,10 @@ export async function CREATE_USER_API_CALL(body){
     if(request_condition){
         const {authtoken} = await post_data.json()
         await localStorage.setItem("noty__auth__token",authtoken)
-        toast.success("Registered!")
+        toast.success("Registered!",{theme:"colored"})
     }
     else{
-        toast.error("Error occured!")
+        toast.error("Error occured!",{theme:"colored"})
     }
     return request_condition
 }

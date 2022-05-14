@@ -28,7 +28,7 @@ const NoteState = (props) => {
         POST_API_CALL(note).then((note)=>{
             setNotes(notes.concat(note)) // since .concat returns an array so we can easily use map on it.
         }).catch((error)=>alert(error))
-        toast.info("Note added")
+        toast.info("Note added",{theme:"colored"})
         return "Done"
     }
     
@@ -37,7 +37,7 @@ const NoteState = (props) => {
         DELETE_API_CALL(id).then(()=>{
             const newNotes = notes.filter(note=>note._id!==id)
             setNotes(newNotes)
-            toast.warning("Note deleted")
+            toast.warning("Note deleted",{theme:"colored"})
         }).catch((error)=>{alert(error)})
     }
     
@@ -60,7 +60,7 @@ const NoteState = (props) => {
             }
         ))}
         )
-        toast.success("Note updated")
+        toast.success("Note updated",{theme:"colored"})
         return "updated"
     }
 

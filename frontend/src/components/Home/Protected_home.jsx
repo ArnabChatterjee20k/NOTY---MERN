@@ -16,7 +16,7 @@ function Protected_home() {
         // console.log("token fetched",token)
 
         // toasting notification
-        token?toast("Welcome"):toast.error("Please login to continue..!")
+        token?toast("Welcome"):toast.error("Please login to continue..!",{theme:"colored"})
     },[])
 
 
