@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 // This function will act as a basic schema provider. Rest functions will take data and add rest data in top of that.
 function server_data_provider(authtoken){
     const host = "http://localhost:5000/";
@@ -95,6 +97,9 @@ export async function AUTH_API_CALL(body){
     if(request_condition){
         const {authtoken} = await post_data.json()
         await localStorage.setItem("noty__auth__token",authtoken)
+        toast.success("Login Successfull")
+    } else{
+        toast.error("Error occured!")
     }
     return request_condition
 }
@@ -115,6 +120,10 @@ export async function CREATE_USER_API_CALL(body){
     if(request_condition){
         const {authtoken} = await post_data.json()
         await localStorage.setItem("noty__auth__token",authtoken)
+        toast.success("Registered!")
+    }
+    else{
+        toast.error("Error occured!")
     }
     return request_condition
 }

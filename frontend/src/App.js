@@ -3,7 +3,8 @@ import './App.css';
 
 // importing functions and components
 import Navigation from "../src/components/Navigation/Navigation";
-import Alert from './components/Alert';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Importing objects from contexts
 import NoteState from "./Context/Notes/NoteState"
@@ -20,6 +21,7 @@ function App() {
             <NoteState>
               <div>
                 <Navigation />
+                <ToastContainer draggable/>
               </div>
             </NoteState>
           </ModalState>

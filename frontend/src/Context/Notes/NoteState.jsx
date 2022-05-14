@@ -1,6 +1,7 @@
 import noteContext from "./noteContext";
 import { useState } from "react";
 import { POST_API_CALL , DELETE_API_CALL , PUT_API_CALL} from "../../API calls/Requests";
+import { toast } from "react-toastify";
 
 const NoteState = (props) => {
     const notes_initital = []
@@ -27,7 +28,7 @@ const NoteState = (props) => {
         POST_API_CALL(note).then((note)=>{
             setNotes(notes.concat(note)) // since .concat returns an array so we can easily use map on it.
         }).catch((error)=>alert(error))
-
+        toast.info("Note added")
         return "Done"
     }
     
@@ -36,6 +37,7 @@ const NoteState = (props) => {
         DELETE_API_CALL(id).then(()=>{
             const newNotes = notes.filter(note=>note._id!==id)
             setNotes(newNotes)
+            toast.warning("Note deleted")
         }).catch((error)=>{alert(error)})
     }
     
@@ -58,6 +60,7 @@ const NoteState = (props) => {
             }
         ))}
         )
+        toast.success("Note updated")
         return "updated"
     }
 
