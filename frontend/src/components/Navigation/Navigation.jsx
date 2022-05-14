@@ -2,7 +2,6 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom"
 import Offcanvas from "./Offcanvas"
 import Navbar from "./Navbar"
 import ComponentsList from "./ComponentsList"
-import Preview_Notes from "../Home/Preview_Notes"
 function Navigation() {
     let nav_items = ComponentsList(); // passing if token is present or not
     return (
