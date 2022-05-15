@@ -2,6 +2,7 @@ import React , { useState} from 'react'
 import PropTypes from 'prop-types'
 import { Dustbin_Icon, Pen_Icon, Book_Icon } from './Icons'
 import "./NoteItem.css"
+import { Link } from 'react-router-dom'
 export default function NoteItem(props) {
     const { title, description,tag } = props.note_item
     const {_id} = props
@@ -13,10 +14,10 @@ export default function NoteItem(props) {
                 <div className="card-body">
                     <div className="d-flex align-items-center">
                         <h4 className="card-title">{title}</h4>
-                        <div className="w-50 d-flex">
+                        <div className="w-50 d-flex align-items">
                             <Dustbin_Icon _id={_id}/>
                             <Pen_Icon _id={_id} note_details={{...props.note_item}}/>
-                            <Book_Icon />
+                            <Link to={`preview/${_id}`} className="link-dark lh-1"> <Book_Icon /> </Link>
                         </div>
                     </div>
                     <p className="card-text">{description}</p>

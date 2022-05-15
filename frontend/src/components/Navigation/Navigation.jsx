@@ -2,6 +2,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom"
 import Offcanvas from "./Offcanvas"
 import Navbar from "./Navbar"
 import ComponentsList from "./ComponentsList"
+import Preview from "../Home/Preview";
 function Navigation() {
     let nav_items = ComponentsList(); // passing if token is present or not
     return (
@@ -18,6 +19,9 @@ function Navigation() {
                             </Route>
                         )
                     })}
+                    <Route path={"/preview/:id"}>
+                        {<Preview/>}
+                    </Route>
                 </Switch>
             </div>
         </Router>
